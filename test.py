@@ -8,12 +8,25 @@ import pandas as pd
 
 df = pd.read_csv('./cholera/choleraDeaths.tsv', sep="\t")
 
+dfa = px.data.gapminder().query("continent=='Oceania'")
 
 df['total'] = df['Attack'] + df['Death']
+
+df_dates = df['Date']
+df_deaths = df['Death']
+
+fig = px.line(dfa, x="year", y="lifeExp", color='country')
+#fig.show()
 
 app = dash.Dash(__name__)
 
 app.layout = html.Div([
+	html.H1(
+		children="Cholera Data-Table",
+		style={
+			'textAlign': 'center'
+		}
+	),
 	dash_table.DataTable(
 		id='table',
 		columns=[
@@ -32,24 +45,26 @@ app.layout = html.Div([
 			'backgroundColor': 'green',
 			'fontWeight': 'bold',
 			'color': 'white'
-		}
+		},	
 	),
 	html.Br(),
 	html.Hr(),
 	html.Br(),
 
+
 	dcc.Graph(
-        id='example-graph',
+        id='Line Graph',
         figure={
             'data': [
-                {'x': [1, 2, 3], 'y': [4, 1, 2], 'type': 'line', 'name': 'SF'},
-                {'x': [1, 2, 3], 'y': [2, 4, 5], 'type': 'line', 'name': u'Montréal'},
+                {'x': df['Date'], 'y': df['Attack'], 'type': 'line', 'name': 'Attacks'},
+                {'x': df['Date'], 'y': df['Death'], 'type': 'line', 'name': 'Deaths'},
             ],
             'layout': {
-                'title': 'Dash Data Visualization'
+                'title': 'Line Graph of Attacks and Deaths'
             }
         }
-    )
+    ),
+
 
 ])
 
