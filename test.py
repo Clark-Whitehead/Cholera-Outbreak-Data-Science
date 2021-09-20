@@ -53,7 +53,7 @@ app.layout = html.Div([
             'data': [
                 {'x': df['Date'], 'y': df['Attack'], 'type': 'line', 'name': 'Attacks'},
                 {'x': df['Date'], 'y': df['Death'], 'type': 'line', 'name': 'Deaths'},
-                {'x': df['Date'], 'y': df['Attack_cumsum'], 'type': 'line', 'name': 'Deaths_total'},
+                {'x': df['Date'], 'y': df['Attack_cumsum'], 'type': 'line', 'name': 'Attacks_total'},
                 {'x': df['Date'], 'y': df['Death_cumsum'], 'type': 'line', 'name': 'Deaths_total'}
             ],
             'layout': {
