@@ -8,15 +8,10 @@ import pandas as pd
 
 df = pd.read_csv('./cholera/choleraDeaths.tsv', sep="\t")
 
-dfa = px.data.gapminder().query("continent=='Oceania'")
-
 df['total'] = df['Attack'] + df['Death']
 
-df_dates = df['Date']
-df_deaths = df['Death']
-
-fig = px.line(dfa, x="year", y="lifeExp", color='country')
-#fig.show()
+df['Attack_cumsum'] = df['Attack'].cumsum()
+df['Death_cumsum'] = df['Death'].cumsum()
 
 app = dash.Dash(__name__)
 
@@ -58,6 +53,8 @@ app.layout = html.Div([
             'data': [
                 {'x': df['Date'], 'y': df['Attack'], 'type': 'line', 'name': 'Attacks'},
                 {'x': df['Date'], 'y': df['Death'], 'type': 'line', 'name': 'Deaths'},
+                {'x': df['Date'], 'y': df['Attack_cumsum'], 'type': 'line', 'name': 'Deaths_total'},
+                {'x': df['Date'], 'y': df['Death_cumsum'], 'type': 'line', 'name': 'Deaths_total'}
             ],
             'layout': {
                 'title': 'Line Graph of Attacks and Deaths'
