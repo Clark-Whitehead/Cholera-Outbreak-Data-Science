@@ -1,19 +1,38 @@
 import dash
 from dash import dcc
 from dash import html
+from dash import dash_table
 from dash.dependencies import Input, Output
 import plotly.express as px
 import pandas as pd
 
+#df = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/solar.csv')
+
+#app = dash.Dash(__name__)
+
+#app.layout = dash_table.DataTable(
+#    id='table',
+#    columns=[{"name": i, "id": i} for i in df.columns],
+#    data=df.to_dict('records'),
+#)
+
 df = pd.read_csv('./cholera/choleraDeaths.tsv', sep="\t")
+
 
 df['total'] = df['Attack'] + df['Death']
 
-print(df.head(10))
-
 app = dash.Dash(__name__)
 
-
+app.layout = html.Div([
+	dash_table.DataTable(
+	id='table',
+	columns=[
+		{"name": i, "id": i} 
+		for i in df.columns
+	],
+	data=df.to_dict('records')
+	)
+])
 
 #app.layout = html.Div([
 #    dcc.Graph(id='graph-with-slider'),
@@ -44,5 +63,5 @@ app = dash.Dash(__name__)
 #    return fig
 
 
-#if __name__ == '__main__':
-#    app.run_server(host='0.0.0.0', debug=True, port=3030)
+if __name__ == '__main__':
+    app.run_server(host='0.0.0.0', debug=True, port=3030)
