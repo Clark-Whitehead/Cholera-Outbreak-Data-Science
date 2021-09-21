@@ -10,8 +10,8 @@ df = pd.read_csv('./cholera/choleraDeaths.tsv', sep="\t")
 
 df['total'] = df['Attack'] + df['Death']
 
-df['Attack_cumsum'] = df['Attack'].cumsum()
-df['Death_cumsum'] = df['Death'].cumsum()
+attack_cumsum = df['Attack'].cumsum()
+death_cumsum = df['Death'].cumsum()
 
 app = dash.Dash(__name__)
 
@@ -53,8 +53,8 @@ app.layout = html.Div([
             'data': [
                 {'x': df['Date'], 'y': df['Attack'], 'type': 'line', 'name': 'Attacks'},
                 {'x': df['Date'], 'y': df['Death'], 'type': 'line', 'name': 'Deaths'},
-                {'x': df['Date'], 'y': df['Attack_cumsum'], 'type': 'line', 'name': 'Attacks_total'},
-                {'x': df['Date'], 'y': df['Death_cumsum'], 'type': 'line', 'name': 'Deaths_total'}
+                {'x': df['Date'], 'y': attack_cumsum, 'type': 'line', 'name': 'Attacks_total'},
+                {'x': df['Date'], 'y': death_cumsum, 'type': 'line', 'name': 'Deaths_total'}
             ],
             'layout': {
                 'title': 'Line Graph of Attacks and Deaths'
