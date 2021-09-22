@@ -5,10 +5,13 @@ from dash import dash_table
 from dash.dependencies import Input, Output
 import plotly.express as px
 import pandas as pd
+import plotly.graph_objects as go
 
 df = pd.read_csv('./cholera/choleraDeaths.tsv', sep="\t")
 
 df_AS = pd.read_csv('./cholera/naplesCholeraAgeSexData.tsv', sep="\t")
+
+df_UK = pd.read_csv('./cholera/UKcensus1851.csv')
 
 df['total'] = df['Attack'] + df['Death']
 
@@ -101,8 +104,94 @@ app.layout = html.Div([
 			'color': 'white'
 		},	
 	),
+	html.Hr(),
+	dcc.Graph(
+		id='naples_graph',
+		figure={
+			'data': [
+				{'x': df_AS['age'], 'y': df_AS['male'], 'type': 'bar', 'name': 'male'},
+				{'x': df_AS['age'], 'y': df_AS['female'], 'type': 'bar', 'name': 'female'},
+			],
+			'layout': {
+				'title': 'Naples Cholera Deaths per 10,000 of age group'
+			}
+		}
+	),
+	html.Br(),
+	html.Hr(),
+	html.H1(
+		children="UK Census 1851",
+		style={
+			'textAlign': 'center'
+		}
+	),
+	dash_table.DataTable(
+		id='table3',
+		columns=[
+			{"name": i, "id": i} 
+			for i in df_UK.columns
+		],
+		data=df_UK.to_dict('records'),
+		style_cell={
+			'maxWidth': 50,
+			'fontWeight': 'bold'
+		},
+		style_table={
+			'height': '300px', 'overflowY': 'auto', 'width': '1200px', 'margin-left': 'auto', 'margin-right': 'auto'
+		},
+		style_header={
+			'backgroundColor': 'green',
+			'fontWeight': 'bold',
+			'color': 'white'
+		},	
+	),
+	dcc.Graph(
+		id='pie_chart_female',
+		figure={
+			'data':[
+				go.Pie(labels=df_UK['age'], values=df_UK['female'])
+			],
+			'layout': {
+				'title': 'Female'
+			}
+		}
+	),
 
+	dcc.Graph(
+		id='pie_chart_male',
+		figure={
+			'data':[
+				go.Pie(labels=df_UK['age'], values=df_UK['male'])
+			],
+			'layout': {
+				'title': 'Male'
+			}
+		}
+	),
 
+	dcc.Graph(
+		id='UK_bar_graph',
+		figure={
+			'data': [
+				{'x': df_UK['age'], 'y': df_UK['male'], 'type': 'bar', 'name': 'male'},
+				{'x': df_UK['age'], 'y': df_UK['female'], 'type': 'bar', 'name': 'female'},
+			],
+			'layout': {
+				'title': 'UK census population'
+			}
+		}
+	),
+	dcc.Graph(
+		id='pie_chart_female_vs_male',
+		figure={
+			'data':[
+				go.Pie(labels=['male','female'], values=[df_UK['male'].sum(), df_UK['female'].sum()])
+			],
+			'layout': {
+				'title': 'UK Census population Male vs Female'
+			}
+		}
+	),
 ])
 
 @app.callback(Output('text', 'children'),
