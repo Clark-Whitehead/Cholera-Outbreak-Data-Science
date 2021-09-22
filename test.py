@@ -16,6 +16,16 @@ death_cumsum = df['Death'].cumsum()
 app = dash.Dash(__name__)
 
 app.layout = html.Div([
+	html.Div([
+	html.Button('Who created this project?', id='button'),
+	html.H1(
+		id = "text",
+		children = ""
+	)],
+	style={
+		'textAlign': 'center'
+	}
+	),
 	html.H1(
 		children="Cholera Data-Table",
 		style={
@@ -65,6 +75,13 @@ app.layout = html.Div([
 
 ])
 
+@app.callback(Output('text', 'children'),
+	Input('button', 'n_clicks'))
+def display_output(n_clicks):
+	if n_clicks is None:
+		return ''
+	else:
+		return 'Created by Clark Whitehead'
 
 
 if __name__ == '__main__':
