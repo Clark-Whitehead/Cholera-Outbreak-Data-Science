@@ -17,7 +17,7 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div([
 	html.Div([
-	html.Button('Who created this project?', id='button', n_clicks=0),
+	html.Button('Who created this project? Click to show and hide', id='button', n_clicks=0),
 	html.H1(
 		id = "text",
 		children = ""
@@ -81,7 +81,7 @@ def display_output(n_clicks):
 	if n_clicks % 2 == 0:
 		return ''
 	else:
-		return 'Created by Clark Whitehead'
+		return "Created by Clark Whitehead", html.Br(), "Created using Dash Python, plotly, and pandas", html.Br(), "Data from Robin Wilson (robin@rtwilson.com, www.rtwilson.com/academic) - Jan 2011."
 
 
 if __name__ == '__main__':
