@@ -17,7 +17,7 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div([
 	html.Div([
-	html.Button('Who created this project?', id='button'),
+	html.Button('Who created this project?', id='button', n_clicks=0),
 	html.H1(
 		id = "text",
 		children = ""
@@ -78,7 +78,7 @@ app.layout = html.Div([
 @app.callback(Output('text', 'children'),
 	Input('button', 'n_clicks'))
 def display_output(n_clicks):
-	if n_clicks is None:
+	if n_clicks % 2 == 0:
 		return ''
 	else:
 		return 'Created by Clark Whitehead'
