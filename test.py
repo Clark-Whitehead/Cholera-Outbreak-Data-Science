@@ -74,6 +74,13 @@ app.layout = html.Div([
         }
     ),
 	html.Br(),
+	html.Hr(),
+	html.H1(
+		children="Naples Cholera Data Table",
+		style={
+			'textAlign': 'center'
+		}
+	),
 	dash_table.DataTable(
 		id='table2',
 		columns=[
