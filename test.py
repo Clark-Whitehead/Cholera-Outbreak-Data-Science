@@ -13,6 +13,10 @@ df_AS = pd.read_csv('./cholera/naplesCholeraAgeSexData.tsv', sep="\t")
 
 df_UK = pd.read_csv('./cholera/UKcensus1851.csv')
 
+df_pumps = pd.read_csv('./cholera/choleraPumpLocations.csv')
+
+df_death_loc = pd.read_csv('./cholera/choleraDeathLocations.csv')
+
 df['total'] = df['Attack'] + df['Death']
 
 attack_cumsum = df['Attack'].cumsum()
@@ -192,6 +196,9 @@ app.layout = html.Div([
 			}
 		}
 	),
+	#dcc.Graph(
+	#	figure=px.scatter_mapbox(
+	#)
 ])
 
 @app.callback(Output('text', 'children'),
