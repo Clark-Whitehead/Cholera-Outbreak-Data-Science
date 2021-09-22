@@ -8,6 +8,8 @@ import pandas as pd
 
 df = pd.read_csv('./cholera/choleraDeaths.tsv', sep="\t")
 
+df_AS = pd.read_csv('./cholera/naplesCholeraAgeSexData.tsv', sep="\t")
+
 df['total'] = df['Attack'] + df['Death']
 
 attack_cumsum = df['Attack'].cumsum()
@@ -71,6 +73,27 @@ app.layout = html.Div([
             }
         }
     ),
+	html.Br(),
+	dash_table.DataTable(
+		id='table2',
+		columns=[
+			{"name": i, "id": i} 
+			for i in df_AS.columns
+		],
+		data=df_AS.to_dict('records'),
+		style_cell={
+			'maxWidth': 50,
+			'fontWeight': 'bold'
+		},
+		style_table={
+			'height': '300px', 'overflowY': 'auto', 'width': '1200px', 'margin-left': 'auto', 'margin-right': 'auto'
+		},
+		style_header={
+			'backgroundColor': 'green',
+			'fontWeight': 'bold',
+			'color': 'white'
+		},	
+	),
 
 
 ])
