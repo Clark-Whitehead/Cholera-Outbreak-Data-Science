@@ -17,12 +17,18 @@ df_pumps = pd.read_csv('./cholera/choleraPumpLocations.csv')
 
 df_death_loc = pd.read_csv('./cholera/choleraDeathLocations.csv')
 
+df_death_loc['color'] = "blue"
+df_pumps['color'] = "red"
+df_pumps['num'] = 4
+
+df_combine = df_death_loc.append(df_pumps)
+
 df['total'] = df['Attack'] + df['Death']
 
 attack_cumsum = df['Attack'].cumsum()
 death_cumsum = df['Death'].cumsum()
 
-fig = px.scatter_mapbox(df_death_loc, lat="lat", lon="lon", size="num", height=700, zoom=15)
+fig = px.scatter_mapbox(df_combine, lat="lat", lon="lon", size="num", height=700, zoom=15, color_discrete_sequence=[df_combine['color']])
 
 fig.update_layout(mapbox_style="open-street-map")
 
