@@ -22,7 +22,7 @@ df['total'] = df['Attack'] + df['Death']
 attack_cumsum = df['Attack'].cumsum()
 death_cumsum = df['Death'].cumsum()
 
-fig = px.scatter_mapbox(df_death_loc, lat="lat", lon="lon", size="num")
+fig = px.scatter_mapbox(df_death_loc, lat="lat", lon="lon", size="num", height=700, zoom=15)
 
 fig.update_layout(mapbox_style="open-street-map")
 
