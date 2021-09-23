@@ -22,6 +22,10 @@ df['total'] = df['Attack'] + df['Death']
 attack_cumsum = df['Attack'].cumsum()
 death_cumsum = df['Death'].cumsum()
 
+fig = px.scatter_mapbox(df_death_loc, lat="lat", lon="lon", size="num")
+
+fig.update_layout(mapbox_style="open-street-map")
+
 app = dash.Dash(__name__)
 
 app.layout = html.Div([
@@ -196,9 +200,9 @@ app.layout = html.Div([
 			}
 		}
 	),
-	#dcc.Graph(
-	#	figure=px.scatter_mapbox(
-	#)
+	dcc.Graph(
+		figure=fig
+	)
 ])
 
 @app.callback(Output('text', 'children'),
