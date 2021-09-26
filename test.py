@@ -32,6 +32,27 @@ fig = px.scatter_mapbox(df_combine, lat="lat", lon="lon", size="num", height=700
 
 fig.update_layout(mapbox_style="carto-positron")
 
+
+
+pie_female = go.Figure(data=[go.Pie(labels=df_UK['age'], values=df_UK['female'])])
+pie_female.update_layout(
+	title_text="Female",
+	title_x=0.5
+)
+
+pie_male = go.Figure(data=[go.Pie(labels=df_UK['age'], values=df_UK['male'])])
+pie_male.update_layout(
+	title_text="Male",
+	title_x=0.5
+)
+
+
+pie_combine = go.Figure(data=[go.Pie(labels=['Male','Female'], values=[df_UK['male'].sum(), df_UK['female'].sum()])]) 
+pie_combine.update_layout(
+	title_text="Male vs Female",
+	title_x=0.5
+)
+
 app = dash.Dash(__name__)
 
 app.layout = html.Div([
@@ -187,26 +208,12 @@ app.layout = html.Div([
 	),
 	dcc.Graph(
 		id='pie_chart_female',
-		figure={
-			'data':[
-				go.Pie(labels=df_UK['age'], values=df_UK['female'])
-			],
-			'layout': {
-				'title': 'Female'
-			}
-		}
+		figure=pie_female
 	),
 
 	dcc.Graph(
 		id='pie_chart_male',
-		figure={
-			'data':[
-				go.Pie(labels=df_UK['age'], values=df_UK['male'])
-			],
-			'layout': {
-				'title': 'Male'
-			}
-		}
+		figure=pie_male
 	),
 
 	dcc.Graph(
@@ -220,14 +227,7 @@ app.layout = html.Div([
 	),
 	dcc.Graph(
 		id='pie_chart_female_vs_male',
-		figure={
-			'data':[
-				go.Pie(labels=['Male','Female'], values=[df_UK['male'].sum(), df_UK['female'].sum()])
-			],
-			'layout': {
-				'title': 'UK Census population Male vs Female - 1854'
-			}
-		}
+		figure=pie_combine
 	),
 	html.H1(
 		children="Map of the Deaths(Red) and Water Pumps(Blue)",
