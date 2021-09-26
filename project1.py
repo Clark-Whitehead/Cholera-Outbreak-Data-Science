@@ -35,7 +35,7 @@ fig.update_layout(mapbox_style="carto-positron")
 
 
 colors_female = ['#ffe5cf', '#ffcb9f', '#ffb26e', '#ff983e', '#e6710d', '#b3580a', '#803f07', '#4d2604', '#190d01']
-pie_female = go.Figure(data=[go.Pie(labels=df_UK['age'], values=df_UK['female'])])
+pie_female = go.Figure(data=[go.Pie(labels=df_UK['Age'], values=df_UK['Female'])])
 pie_female.update_layout(
 	title_text="Female",
 	title_x=0.5
@@ -43,7 +43,7 @@ pie_female.update_layout(
 pie_female.update_traces(marker=dict(colors=colors_female))
 
 colors_male = ['#d2e4f0', '#a5c8e1', '#79add2', '#4c91c3', '#1c6aa2', '#16537e', '#103b5a', '#092336', '#030c12']
-pie_male = go.Figure(data=[go.Pie(labels=df_UK['age'], values=df_UK['male'])])
+pie_male = go.Figure(data=[go.Pie(labels=df_UK['Age'], values=df_UK['Male'])])
 pie_male.update_layout(
 	title_text="Male",
 	title_x=0.5
@@ -51,7 +51,7 @@ pie_male.update_layout(
 pie_male.update_traces(marker=dict(colors=colors_male))
 
 colors_combine = ['#1F77B4', '#FF7F0E']
-pie_combine = go.Figure(data=[go.Pie(labels=['Male','Female'], values=[df_UK['male'].sum(), df_UK['female'].sum()])]) 
+pie_combine = go.Figure(data=[go.Pie(labels=['Male','Female'], values=[df_UK['Male'].sum(), df_UK['Female'].sum()])]) 
 pie_combine.update_layout(
 	title_text="Male vs Female",
 	title_x=0.5
@@ -227,9 +227,12 @@ app.layout = html.Div([
 		id='UK_bar_graph',
 		figure={
 			'data': [
-				{'x': df_UK['age'], 'y': df_UK['male'], 'type': 'bar', 'name': 'Male'},
-				{'x': df_UK['age'], 'y': df_UK['female'], 'type': 'bar', 'name': 'Female'},
-			]
+				{'x': df_UK['Age'], 'y': df_UK['Male'], 'type': 'bar', 'name': 'Male'},
+				{'x': df_UK['Age'], 'y': df_UK['Female'], 'type': 'bar', 'name': 'Female'},
+			],
+			'layout': {
+				'title': 'UK Populatin by Age and Sex'
+			}
 		}
 	),
 	dcc.Graph(
