@@ -17,8 +17,8 @@ df_pumps = pd.read_csv('./cholera/choleraPumpLocations.csv')
 
 df_death_loc = pd.read_csv('./cholera/choleraDeathLocations.csv')
 
-df_death_loc['color'] = "red"
-df_pumps['color'] = "blue"
+df_death_loc['color'] = "#FF7F0E"
+df_pumps['color'] = "#1F77B4"
 df_pumps['num'] = 4
 
 df_combine = df_death_loc.append(df_pumps)
@@ -127,10 +127,10 @@ app.layout = html.Div([
         id='Line Graph',
         figure={
             'data': [
-                {'x': df['Date'], 'y': df['Attack'], 'type': 'line', 'name': 'Attacks', 'line':dict(color='blue')},
-                {'x': df['Date'], 'y': df['Death'], 'type': 'line', 'name': 'Deaths', 'line':dict(color='red')},
-                {'x': df['Date'], 'y': attack_cumsum, 'type': 'line', 'name': 'Attacks_total', 'line':dict(color='blue', dash='dash')},
-                {'x': df['Date'], 'y': death_cumsum, 'type': 'line', 'name': 'Deaths_total', 'line':dict(color='red', dash='dash')}
+                {'x': df['Date'], 'y': df['Attack'], 'type': 'line', 'name': 'Attacks', 'line':dict(color='#1F77B4')},
+                {'x': df['Date'], 'y': df['Death'], 'type': 'line', 'name': 'Deaths', 'line':dict(color='#FF7F0E')},
+                {'x': df['Date'], 'y': attack_cumsum, 'type': 'line', 'name': 'Attacks_total', 'line':dict(color='#1F77B4', dash='dash')},
+                {'x': df['Date'], 'y': death_cumsum, 'type': 'line', 'name': 'Deaths_total', 'line':dict(color='#FF7F0E', dash='dash')}
             ],
             'layout': {
                 'title': 'Line Graph of Attacks and Deaths'
@@ -234,7 +234,7 @@ app.layout = html.Div([
 	),
 	html.Hr(),
 	html.H1(
-		children="Map of the Deaths(Red) and Water Pumps(Blue)",
+		children="Map of the Deaths and Water Pumps",
 		style={
 			'textAlign': 'center',
 			'font-family': 'arial',
