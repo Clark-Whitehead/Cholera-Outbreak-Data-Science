@@ -115,7 +115,6 @@ app.layout = html.Div([
 		},	
 	),
 	html.Br(),
-	html.Hr(),
 	html.Br(),
 
 
@@ -163,7 +162,6 @@ app.layout = html.Div([
 			'color': 'white'
 		},	
 	),
-	html.Hr(),
 	dcc.Graph(
 		id='naples_graph',
 		figure={
@@ -229,6 +227,7 @@ app.layout = html.Div([
 		id='pie_chart_female_vs_male',
 		figure=pie_combine
 	),
+	html.Hr(),
 	html.H1(
 		children="Map of the Deaths(Red) and Water Pumps(Blue)",
 		style={
