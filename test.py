@@ -102,10 +102,10 @@ app.layout = html.Div([
         id='Line Graph',
         figure={
             'data': [
-                {'x': df['Date'], 'y': df['Attack'], 'type': 'line', 'name': 'Attacks'},
-                {'x': df['Date'], 'y': df['Death'], 'type': 'line', 'name': 'Deaths'},
-                {'x': df['Date'], 'y': attack_cumsum, 'type': 'line', 'name': 'Attacks_total'},
-                {'x': df['Date'], 'y': death_cumsum, 'type': 'line', 'name': 'Deaths_total'}
+                {'x': df['Date'], 'y': df['Attack'], 'type': 'line', 'name': 'Attacks', 'line':dict(color='blue')},
+                {'x': df['Date'], 'y': df['Death'], 'type': 'line', 'name': 'Deaths', 'line':dict(color='red')},
+                {'x': df['Date'], 'y': attack_cumsum, 'type': 'line', 'name': 'Attacks_total', 'line':dict(color='blue', dash='dash')},
+                {'x': df['Date'], 'y': death_cumsum, 'type': 'line', 'name': 'Deaths_total', 'line':dict(color='red', dash='dash')}
             ],
             'layout': {
                 'title': 'Line Graph of Attacks and Deaths'
