@@ -23,7 +23,7 @@ df_pumps['num'] = 4
 
 df_combine = df_death_loc.append(df_pumps)
 
-df['total'] = df['Attack'] + df['Death']
+df['Total'] = df['Attack'] + df['Death']
 
 attack_cumsum = df['Attack'].cumsum()
 death_cumsum = df['Death'].cumsum()
@@ -36,19 +36,41 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div([
 	html.Div([
-	html.Button('Who created this project? Click to show and hide', id='button', n_clicks=0),
-	html.H1(
-		id = "text",
-		children = ""
-	)],
+		html.Button('Who created this project?', id='button', n_clicks=0),
+		html.H1(
+			id = "text",
+			children = ""
+		),
+		html.H1(
+			children="A Visualization of the 1854 Cholera Outbreak",
+			style={
+				'textAlign': 'center',
+				'font-family': 'arial',
+				'color': '#FF7F0E'
+			}
+		),
+		html.Img(
+			src='https://imgix.ranker.com/list_img_v2/16601/2776601/original/1832-england-cholera-epidemic-facts',
+			style={'display': 'block',
+					'margin-left': 'auto',
+					'margin-right': 'auto',
+					'width': '50%'
+			}
+		)
+	],
 	style={
-		'textAlign': 'center'
+		'textAlign': 'center',
+		'font-family': 'arial',
+		'background-color': '#1F77B4'
 	}
 	),
+	html.Hr(),
 	html.H1(
-		children="Cholera Data-Table",
+		children="Attacks & Deaths",
 		style={
-			'textAlign': 'center'
+			'textAlign': 'center',
+			'font-family': 'arial',
+			'color': '#FF7F0E'
 		}
 	),
 	dash_table.DataTable(
@@ -66,7 +88,7 @@ app.layout = html.Div([
 			'height': '300px', 'overflowY': 'auto', 'width': '1200px', 'margin-left': 'auto', 'margin-right': 'auto'
 		},
 		style_header={
-			'backgroundColor': 'green',
+			'backgroundColor': '#1F77B4',
 			'fontWeight': 'bold',
 			'color': 'white'
 		},	
@@ -93,9 +115,11 @@ app.layout = html.Div([
 	html.Br(),
 	html.Hr(),
 	html.H1(
-		children="Naples Cholera Data Table",
+		children=["Naples in the Time of Cholera 1884-1911", html.Br(), "Deaths per 10,000 inhabitants of that age group"],
 		style={
-			'textAlign': 'center'
+			'textAlign': 'center',
+			'font-family': 'arial',
+			'color': '#FF7F0E'
 		}
 	),
 	dash_table.DataTable(
@@ -113,7 +137,7 @@ app.layout = html.Div([
 			'height': '300px', 'overflowY': 'auto', 'width': '1200px', 'margin-left': 'auto', 'margin-right': 'auto'
 		},
 		style_header={
-			'backgroundColor': 'green',
+			'backgroundColor': '#1F77B4',
 			'fontWeight': 'bold',
 			'color': 'white'
 		},	
@@ -123,20 +147,22 @@ app.layout = html.Div([
 		id='naples_graph',
 		figure={
 			'data': [
-				{'x': df_AS['age'], 'y': df_AS['male'], 'type': 'bar', 'name': 'male'},
-				{'x': df_AS['age'], 'y': df_AS['female'], 'type': 'bar', 'name': 'female'},
+				{'x': df_AS['Age'], 'y': df_AS['Male'], 'type': 'bar', 'name': 'Male'},
+				{'x': df_AS['Age'], 'y': df_AS['Female'], 'type': 'bar', 'name': 'Female'},
 			],
 			'layout': {
-				'title': 'Naples Cholera Deaths per 10,000 of age group'
+				'title': 'Naples Cholera Deaths per 10,000 of Age Group'
 			}
 		}
 	),
 	html.Br(),
 	html.Hr(),
 	html.H1(
-		children="UK Census 1851",
+		children="UK Census Population 1851 - By Sex and Age",
 		style={
-			'textAlign': 'center'
+			'textAlign': 'center',
+			'font-family': 'arial',
+			'color': '#FF7F0E'
 		}
 	),
 	dash_table.DataTable(
@@ -154,7 +180,7 @@ app.layout = html.Div([
 			'height': '300px', 'overflowY': 'auto', 'width': '1200px', 'margin-left': 'auto', 'margin-right': 'auto'
 		},
 		style_header={
-			'backgroundColor': 'green',
+			'backgroundColor': '#1F77B4',
 			'fontWeight': 'bold',
 			'color': 'white'
 		},	
@@ -187,28 +213,26 @@ app.layout = html.Div([
 		id='UK_bar_graph',
 		figure={
 			'data': [
-				{'x': df_UK['age'], 'y': df_UK['male'], 'type': 'bar', 'name': 'male'},
-				{'x': df_UK['age'], 'y': df_UK['female'], 'type': 'bar', 'name': 'female'},
-			],
-			'layout': {
-				'title': 'UK census population'
-			}
+				{'x': df_UK['age'], 'y': df_UK['male'], 'type': 'bar', 'name': 'Male'},
+				{'x': df_UK['age'], 'y': df_UK['female'], 'type': 'bar', 'name': 'Female'},
+			]
 		}
 	),
 	dcc.Graph(
 		id='pie_chart_female_vs_male',
 		figure={
 			'data':[
-				go.Pie(labels=['male','female'], values=[df_UK['male'].sum(), df_UK['female'].sum()])
+				go.Pie(labels=['Male','Female'], values=[df_UK['male'].sum(), df_UK['female'].sum()])
 			],
 			'layout': {
-				'title': 'UK Census population Male vs Female'
+				'title': 'UK Census population Male vs Female - 1854'
 			}
 		}
 	),
 	dcc.Graph(
 		figure=fig
-	)
+	),
+
 ])
 
 @app.callback(Output('text', 'children'),
