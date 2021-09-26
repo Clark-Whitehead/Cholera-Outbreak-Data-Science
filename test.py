@@ -17,8 +17,8 @@ df_pumps = pd.read_csv('./cholera/choleraPumpLocations.csv')
 
 df_death_loc = pd.read_csv('./cholera/choleraDeathLocations.csv')
 
-df_death_loc['color'] = "blue"
-df_pumps['color'] = "red"
+df_death_loc['color'] = "red"
+df_pumps['color'] = "blue"
 df_pumps['num'] = 4
 
 df_combine = df_death_loc.append(df_pumps)
@@ -30,7 +30,7 @@ death_cumsum = df['Death'].cumsum()
 
 fig = px.scatter_mapbox(df_combine, lat="lat", lon="lon", size="num", height=700, zoom=15, color_discrete_sequence=[df_combine['color']])
 
-fig.update_layout(mapbox_style="open-street-map")
+fig.update_layout(mapbox_style="carto-positron")
 
 app = dash.Dash(__name__)
 
@@ -227,6 +227,14 @@ app.layout = html.Div([
 			'layout': {
 				'title': 'UK Census population Male vs Female - 1854'
 			}
+		}
+	),
+	html.H1(
+		children="Map of the Deaths and Water Pumps",
+		style={
+			'textAlign': 'center',
+			'font-family': 'arial',
+			'color': '#FF7F0E'
 		}
 	),
 	dcc.Graph(
