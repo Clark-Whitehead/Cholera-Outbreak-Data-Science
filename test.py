@@ -230,7 +230,7 @@ app.layout = html.Div([
 		}
 	),
 	html.H1(
-		children="Map of the Deaths and Water Pumps",
+		children="Map of the Deaths(Red) and Water Pumps(Blue)",
 		style={
 			'textAlign': 'center',
 			'font-family': 'arial',
