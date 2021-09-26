@@ -65,7 +65,11 @@ app.layout = html.Div([
 		html.Button('Who created this project?', id='button', n_clicks=0),
 		html.H1(
 			id = "text",
-			children = ""
+			children = "",
+			style={
+				'color': 'white',
+				'font-family': 'arial'
+			}
 		),
 		html.H1(
 			children="A Visualization of the 1854 Cholera Outbreak",
@@ -253,7 +257,7 @@ def display_output(n_clicks):
 	if n_clicks % 2 == 0:
 		return ''
 	else:
-		return "Created by Clark Whitehead", html.Br(), "Created using Dash Python, plotly, and pandas", html.Br(), "Data from Robin Wilson (robin@rtwilson.com, www.rtwilson.com/academic) - Jan 2011."
+		return "Created by Clark Whitehead: clark37@hawaii.edu", html.Br(), "Created using Dash Python, plotly, and pandas", html.Br(), "Data from Robin Wilson (robin@rtwilson.com, www.rtwilson.com/academic) - Jan 2011."
 
 
 if __name__ == '__main__':
