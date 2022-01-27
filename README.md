@@ -2,8 +2,6 @@
 
 ### Plotly Website
 
-The results from the Reddit Sentiment and Stock Price notebook above has been included in a plotly website (coded in Python using Dash). We also included a bar graph depicting which Disney characters were discussed the most on the r/Disney subreddit, as well as an interactive map of Disneyland with each ride's sentiment (taken from r/Disneyland) being displayed. 
-
 In order to access the website, the python application must be running. This can be done by cloning this repository locally: 
 
 ```
