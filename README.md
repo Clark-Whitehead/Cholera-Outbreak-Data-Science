@@ -1,5 +1,7 @@
 # Cholera outbreak of 1854 visualized with Plotly/Dash
 
+<img src="https://github.com/Clark-Whitehead/Cholera-Outbreak-Data-Science/blob/main/cholera.jpg?raw=true" width="350" alt="cholera_outbreak_image">
+
 ### Run on Linux:
 
 #### 1. In order to access the website, the python application must be running. This can be done by cloning this repository locally: 
