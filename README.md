@@ -20,13 +20,25 @@ cd Cholera-Outbreak-Data-Science
 sudo apt-get install python3
 ```
 
-#### 4. Run the python program:
+#### 4. Install pip if you don't have it already, along with the following modules:
+
+```
+sudo apt-get install pip
+```
+```
+pip install dash
+```
+```
+pip install pandas
+```
+
+#### 5. Run the python program:
 
 ```
 python3 cholera.py
 ```
 
-#### 5. Finally, open an internet browswer of your choice and navigate to the following url:
+#### 6. Finally, open an internet browswer of your choice and navigate to the following url:
 
 ```
 http://localhost:3030/
