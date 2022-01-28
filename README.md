@@ -14,13 +14,19 @@ git clone https://github.com/Clark-Whitehead/Cholera-Outbreak-Data-Science.git
 cd Cholera-Outbreak-Data-Science
 ```
 
-#### 3. Run the python program (note: make sure python3 is installed on your computer):
+#### 3. Install python3 if you don't have it already:
+
+```
+sudo apt-get install python3
+```
+
+#### 4. Run the python program:
 
 ```
 python3 cholera.py
 ```
 
-#### 4. Finally, open an internet browswer of your choice and navigate to the following url:
+#### 5. Finally, open an internet browswer of your choice and navigate to the following url:
 
 ```
 http://localhost:3030/
