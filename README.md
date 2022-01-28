@@ -5,19 +5,19 @@
 In order to access the website, the python application must be running. This can be done by cloning this repository locally: 
 
 ```
-git clone git@github.com:Clark-Whitehead/data_viz_final_project.git
+git clone https://github.com/Clark-Whitehead/Cholera-Outbreak-Data-Science.git
 ```
 
 After cloning, navigate into the repository's directory:
 
 ```
-cd data_viz_final_project
+cd Cholera-Outbreak-Data-Science
 ```
 
 Run the python program (note: make sure python3 is installed on your computer):
 
 ```
-python3 app.py
+python3 cholera.py
 ```
 
 Finally, open an internet browswer of your choice and navigate to the following url:
